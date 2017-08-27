@@ -1,0 +1,88 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <style type="text/css">
+    #container {
+  text-align: center;
+}
+figure {
+  -webkit-animation: 2s ease 0s normal forwards 1 fadein;
+  animation: 2s ease 0s normal forwards 1 fadein;
+  margin: 20px 10px 0;
+  clear: none;
+  border-radius: 10px;
+  display: inline-block;
+}
+figure:nth-child(1) {
+  background: #81D4FA;
+}
+figure:nth-child(2) {
+  background: #C5E1A5;
+}
+
+figure img {
+  max-width: 400px;
+  margin: 10px;
+  border-radius: 8px;
+}
+
+figcaption {
+  font-family: 'Arial';
+  font-size: 1.4em;
+  width: calc(100% - 20px);
+  text-align: center;
+  margin: 0 10px 14px 10px;
+}
+
+figure:nth-child(1) figcaption {
+  color: #0277BD;
+}
+
+figure:nth-child(2) figcaption {
+  color: #558B2F;
+}
+
+@keyframes fadein{
+  0% { opacity:0;}
+  100% { opacity:1;}
+}
+
+@-webkit-keyframes fadein{
+  0% { opacity:0;}
+  100% { opacity:1;}
+}
+</style>
+    <div id="container"></div>
+    <script>
+      var people = ['Christy','Shawn'],        // People
+      timestamp = new Date(1514786400000), // Expected date
+      famSize = Math.pow(people.length,2), // Exponential growth
+      start = people.reduce((str,p,i) => { // Start of sentence
+        str+= p+(!i?' & ':i?' will become a family of ':'');
+        return str;
+      },''),                               // Month, end of sentence
+      month = timestamp.toLocaleString('en-us', { month: "long" }),
+      end = ' in '+month+', '+timestamp.getFullYear()+'!',
+      twins = [
+        ['2GEhzVD.jpg','Channing Maddox Dawson'],
+        ['H3fExVq.jpg','Sterling Everett Dawson']
+      ],
+      el = document.getElementById('container'),
+      showDetail = (tw) => {
+          tw.forEach(function(t){
+            var htm = '<figure>'+
+                '<img src="http://imgur.com/'+t[0]+'?z=0">'+
+                '<figcaption>'+t[1]+'</figcaption>'+
+                '</figure>';
+            el.insertAdjacentHTML('beforeend', htm);
+          })
+      };
+      
+
+      if(confirm(start+famSize+end)) showDetail(twins);
+      else showDetail(twins);
+    </script>
+  </body>
+
+</html>
